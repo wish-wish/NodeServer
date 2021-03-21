@@ -1,0 +1,20 @@
+{
+  "name": "nodejs-console",
+  "version": "0.0.0",
+  "main": "main.js",
+  "dependencies": {
+    "console": "^0.7.2",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "lua.vm.js": "0.0.1",
+    "mime": "^2.5.2",
+    "mssql": "^6.3.1",
+    "mysql": "^2.18.1",
+    "net": "^1.0.2",
+    "path": "^0.12.7",
+    "postgresql": "0.0.1",
+    "sql": "^0.78.0",
+    "url": "^0.11.0",
+    "websocket.io": "^0.2.1"
+  }
+}
