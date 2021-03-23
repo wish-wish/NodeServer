@@ -4,6 +4,7 @@
   "main": "main.js",
   "dependencies": {
     "console": "^0.7.2",
+    "curvejs": "^0.3.4",
     "fs": "0.0.1-security",
     "http": "0.0.1-security",
     "lua.vm.js": "0.0.1",
@@ -11,6 +12,7 @@
     "mssql": "^6.3.1",
     "mysql": "^2.18.1",
     "net": "^1.0.2",
+    "pasition": "^1.0.3",
     "path": "^0.12.7",
     "postgresql": "0.0.1",
     "sql": "^0.78.0",

@@ -10,8 +10,8 @@ var executelua=function( relfile )
   var lf=process.cwd()+"/"+relfile;
   fs.exists(lf, function (exists) {
       if (exists) {
-        fs.readFile(lf, "binary", function (err, file) {
-          lua.execute(file);
+        fs.readFile(lf, "binary", function (err, filecnt) {
+          lua.execute(filecnt);
         });
       }
     }
