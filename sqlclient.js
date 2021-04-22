@@ -3,8 +3,8 @@ var mysql = require('mysql');
 var connect = mysql.createConnection({
     host: 'www.5icoin.com',
     user: 'root',
-    password: 'a',
-    database: 'mangos',
+    password: '----',
+    database: 'card_1',
     port: 3306
 });
 

@@ -1,1 +1,7 @@
-node.js  服务端中文字符流转发的相关处理
+node.js  
+TODO1:网络连接
+TODO2:用户管理模块
+TODO3:房卡游戏
+TODO4:多人小厅
+TODO5:桌游
+TODO99：lua增强，希望能使用luaforwindows/quick/cocos2dx-lua的相关模块
