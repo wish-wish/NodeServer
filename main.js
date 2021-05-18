@@ -18,6 +18,7 @@ var isLe = (function() {
     } else {
         console.log("big edian");
     }
+    return edianflag;
 })();
 
 var port = 7681;
@@ -28,6 +29,22 @@ server.on('connection', function(socket) {
     socket.socket.setTimeout(5 * 60 * 60 * 24 * 1000);
     socket.socket.setNoDelay(true);
     socket.on('message', function(data) {
+        
+        var utf=new Uint16Array(data.length/2);
+        for(let i=0;i<utf.length;i++)
+        {
+            if(isLe)
+                utf[i]=data[2*i]+data[2*i+1]*256;
+            else
+                utf[i]=data[2*i]*256+data[2*i+1];
+        }
+        var str = "";
+        for (var i = 0; i < utf.length; i++) {
+            
+            str = str + String.fromCharCode(utf[i]);            
+        }
+        InsertLog(str);
+        console.log("message:"+str);
         //broad cast
         server.clients.forEach(function(client) {
             client.write(data, { fin: true, mask: false, binary: true }, function(data) {

@@ -3,8 +3,8 @@ var mysql = require('mysql');
 var connect = mysql.createConnection({
     host: 'www.5icoin.com',
     user: 'root',
-    password: '----',
-    database: 'card_1',
+    password: '-----',
+    database: 'sudoku',
     port: 3306
 });
 
@@ -19,6 +19,26 @@ connect.connect(function(error, results) {
 UpdateChara = function(conn, tpe, value) {
     //
 };
+
+InsertLog = function(values,conn) {
+    //var values = ['1', '0', '0'];
+    if(conn==null)
+    {
+        conn=connect;
+    }
+    conn.query('INSERT INTO user_log SET guid = ?', values,
+        function(error, results) {
+            if (error) {
+                console.log("ClientReady Error: " + error.message);
+                conn.end();
+                return;
+            }
+            console.log('Inserted: ' + results.affectedRows + ' row.');
+            console.log('Id inserted: ' + results.insertId);
+        }
+    );
+};
+
 
 InsertChara = function(conn, values) {
     //var values = ['1', '0', '0'];
