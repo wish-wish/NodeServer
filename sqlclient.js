@@ -58,6 +58,25 @@ EnterGameLog = function(values,conn) {
     );
 };
 
+ColorLog = function(values,conn) {
+    //var values = ['1', '0', '0'];
+    if(conn==null)
+    {
+        conn=connect;
+    }
+    conn.query('INSERT INTO color_log SET guid=?,color=?,usercolor=?,difid=?,num=?,usertime=?', values,
+        function(error, results) {
+            if (error) {
+                console.log("ClientReady Error: " + error.message);
+                conn.end();
+                return;
+            }
+            console.log('Inserted: ' + results.affectedRows + ' row.');
+            console.log('Id inserted: ' + results.insertId);
+        }
+    );
+};
+
 InsertChara = function(conn, values) {
     //var values = ['1', '0', '0'];
     conn.query('INSERT INTO card_characters SET pguid = ?, gameid = ? , timeline = ?', values,

@@ -45,18 +45,23 @@ server.on('connection', function(socket) {
         let a=str.split(';');
         if(a.length==1)
         {
-            a=a[0].split(":");
-            if(a[0]=="start")
+            let params=a[0].split(":");
+            if(paramsa[0]=="start")
             {
-                InsertLog(a[1]);
+                InsertLog(params[1]);
             }
-            else if(a[0]=="enter")
+            else if(params[0]=="enter")
             {
-                EnterGameLog([a[1],a[2]]);
+                EnterGameLog([params[1],params[2]]);
+            }
+            else if(params[0]=="color")
+            {
+                //'color:0:did:id_abc:9e46c8:c846c6:1:1:tme:1621348546430'
+                ColorLog([params[3],params[4],params[5],params[6],params[7],params[9]]);
             }
             else
             {
-                console.log("unperocess:"+a[0]);
+                console.log("unperocess:"+params[0]);
             }
             console.log("message:"+str);            
             //broad cast
@@ -75,7 +80,7 @@ server.on('connection', function(socket) {
             });
         }
         else
-        {
+        {                        
             //TODO:data process
         }        
     });
