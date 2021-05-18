@@ -39,6 +39,24 @@ InsertLog = function(values,conn) {
     );
 };
 
+EnterGameLog = function(values,conn) {
+    //var values = ['1', '0', '0'];
+    if(conn==null)
+    {
+        conn=connect;
+    }
+    conn.query('INSERT INTO game_log SET guid=?,gid = ?', values,
+        function(error, results) {
+            if (error) {
+                console.log("ClientReady Error: " + error.message);
+                conn.end();
+                return;
+            }
+            console.log('Inserted: ' + results.affectedRows + ' row.');
+            console.log('Id inserted: ' + results.insertId);
+        }
+    );
+};
 
 InsertChara = function(conn, values) {
     //var values = ['1', '0', '0'];

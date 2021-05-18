@@ -28,8 +28,7 @@ server.on('connection', function(socket) {
     console.log('new connect:'+socket);
     socket.socket.setTimeout(5 * 60 * 60 * 24 * 1000);
     socket.socket.setNoDelay(true);
-    socket.on('message', function(data) {
-        
+    socket.on('message', function(data) {        
         var utf=new Uint16Array(data.length/2);
         for(let i=0;i<utf.length;i++)
         {
@@ -43,15 +42,42 @@ server.on('connection', function(socket) {
             
             str = str + String.fromCharCode(utf[i]);            
         }
-        InsertLog(str);
-        console.log("message:"+str);
-        //broad cast
-        server.clients.forEach(function(client) {
-            client.write(data, { fin: true, mask: false, binary: true }, function(data) {
-                console.log("send-done");
-                client.end();//for short connect
+        let a=str.split(';');
+        if(a.length==1)
+        {
+            a=a[0].split(":");
+            if(a[0]=="start")
+            {
+                InsertLog(a[1]);
+            }
+            else if(a[0]=="enter")
+            {
+                EnterGameLog([a[1],a[2]]);
+            }
+            else
+            {
+                console.log("unperocess:"+a[0]);
+            }
+            console.log("message:"+str);            
+            //broad cast
+            server.clients.forEach(function(client) {
+                if(client&&client.write)
+                {
+                    client.write(data, { fin: true, mask: false, binary: true }, function(data) {
+                        console.log("send-done");
+                        client.end();//for short connect
+                    });
+                }
+                else
+                {
+                    console.log('null write')
+                }
             });
-        });
+        }
+        else
+        {
+            //TODO:data process
+        }        
     });
     socket.on("error", function(data) {
         console.log('error:' + data);
