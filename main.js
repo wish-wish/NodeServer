@@ -57,7 +57,12 @@ server.on('connection', function(socket) {
             else if(params[0]=="color")
             {
                 //'color:0:did:id_abc:9e46c8:c846c6:1:1:tme:1621348546430'
-                ColorLog([params[3],params[4],params[5],params[6],params[7],params[9]]);
+                let curidf=-1;
+                if(params[10])
+                {
+                    curidf=params[10];
+                }
+                ColorLog([params[3],params[4],params[5],params[6],params[7],curidf,params[9]]);
             }
             else
             {

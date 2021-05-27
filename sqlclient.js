@@ -16,6 +16,7 @@ connect.connect(function(error, results) {
     console.log('Connected to MySQL');
 });
 
+
 UpdateChara = function(conn, tpe, value) {
     //
 };
@@ -64,7 +65,7 @@ ColorLog = function(values,conn) {
     {
         conn=connect;
     }
-    conn.query('INSERT INTO color_log SET guid=?,color=?,usercolor=?,difid=?,num=?,usertime=?', values,
+    conn.query('INSERT INTO color_log SET guid=?,color=?,usercolor=?,difid=?,num=?,curdif=?,usertime=?', values,
         function(error, results) {
             if (error) {
                 console.log("ClientReady Error: " + error.message);
